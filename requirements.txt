@@ -1,0 +1,4 @@
+ChatterBot==1.0.5
+python_telegram_bot==12.2.0
+psycopg2==2.8.4
+Flask==1.1.1
