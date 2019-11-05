@@ -1,26 +1,15 @@
 ### **Dependencies**
 1. Telegram API
 2. Chatterbot libs
+3. PostgreSQL database adapter
+4. Flask
 
 
-### **Run these commands**
 
-Install python-telegram-bot:
-
-```bash
-$ pip install python-telegram-bot
-```
-
-Install chatterbot: 
+### **Run the following command**
 
 ```bash
-$ pip install chatterbot
+$ pip install -r requirements.txt
 ```
-
-Then install chatterbot corpus:
-```bash
-$ pip install chatterbot-corpus
-```
-
 
 
