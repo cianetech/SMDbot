@@ -5,7 +5,7 @@ from config import CONFIDENCE
 from bot import Bot
 import threading
 
-app = Flask(__name__) #static_folder="static"
+app = Flask(__name__, template_folder="C:/Users/graciane_nobre/PycharmProjects/SMDbot/docs") #static_folder="static"
 db = Database()
 smd_bot = Bot()
 

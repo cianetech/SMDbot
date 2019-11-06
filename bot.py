@@ -1,7 +1,7 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from chatterbot import ChatBot
 from chatterbot.trainers import ChatterBotCorpusTrainer
-from config import TELEGRAM_ACCESS_TOKEN, MONGO_DATABASE, MONGO_URI, ENABLE_TRAIN
+from config import TELEGRAM_ACCESS_TOKEN, MONGO_DATABASE, MONGO_URI, ENABLE_TRAIN, CONFIDENCE
 import logging
 import os
 
@@ -11,7 +11,7 @@ class Bot:
 
     def echo(self, bot, update):
         response = self.current_bot.get_response(update.message.text)
-        if float(response.confidence) > 0.5:
+        if float(response.confidence) > CONFIDENCE:
             update.message.reply_text(str(response.text))
         else:
             update.message.reply_text('Ainda não sei responder esta pergunta')
