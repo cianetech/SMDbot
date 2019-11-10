@@ -83,6 +83,34 @@ class Database:
             count = count + 1
 
 
+    def insert_new_question(self, question, answers):
+        self.insert("pergunta",["pergunta_text"], ["'"+question+"'"])
+        self.cursor.execute("SELECT pergunta_id from pergunta where pergunta_text = " + "'" + question + "'")
+        result = self.cursor.fetchall()[0][0] # get first tuple and first colummn
+        for asr in answers:
+            self.insert("resposta",["resposta_text","pergunta_id_fk"],["'"+asr+"'", str(result)])
+        
+
+    def get_data(self):
+        data = []
+        self.cursor.execute("SELECT pergunta_id, pergunta_text from pergunta")
+        result_q = self.cursor.fetchall()
+        
+        for q in result_q:
+            q_id = q[0]
+            q_text = str(q[1])#.replace("'", "", 2)
+            self.cursor.execute("SELECT resposta_text from resposta where pergunta_id_fk = " + str(q_id))
+            result_a = self.cursor.fetchall()
+            ent = []
+            ent.append(q_text)
+            
+            for a in result_a:
+                a_text = str(a[0])#.replace("'", "", 2)
+                ent.append(a_text)
+            data.append(ent)
+        
+        return data
+
     def get_example_data(self):
         data = [
             ["Qual o dia da matrícula?",
@@ -152,3 +180,15 @@ class Database:
              "Não, é uma opção do aluno utilizar parte da carga horária de optativas para cursar fora do SMD. O limite máximo está na matriz curricular."]
         ]
         return data
+
+
+##### Test Database
+
+#db = Database()
+#db.open_connection()
+
+#db.insert_new_question( "Test de Pergunta?", ["resposta 1", "resposta 2"])
+#print(db.get_data())
+
+#db.close_connection()
+ 
