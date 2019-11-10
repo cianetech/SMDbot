@@ -5,7 +5,7 @@ from config import CONFIDENCE
 from bot import Bot
 import threading
 
-app = Flask(__name__, template_folder="C:/Users/graciane_nobre/PycharmProjects/SMDbot/docs") #static_folder="static"
+app = Flask(__name__, template_folder="docs") #static_folder="static"
 db = Database()
 smd_bot = Bot()
 
@@ -38,7 +38,7 @@ def run_bot():
     try:
         print("-- START BOT -- ")
         db.open_connection()
-        data = db.get_example_data()
+        data = db.get_data() #db.get_example_data()
         db.close_connection()
 
         if(data is None):
